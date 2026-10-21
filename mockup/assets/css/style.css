@@ -1108,7 +1108,10 @@ button.app-row:hover{ background: var(--blush-50); }
 .app-row__text{ flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
 .app-row__text strong{ font-size: 14px; font-weight: 600; }
 .app-row__text > span{ font-size: 12.5px; color: var(--ink-soft); overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-.app-row__muted{ font-weight: 400; color: var(--ink-soft); margin-left: 6px; }
+.app-row--address{ align-items: flex-start; padding-block: var(--space-4); }
+.app-row--address .app-row__text{ gap: var(--space-1); }
+.app-row--address .app-row__chevron{ align-self: center; }
+.app-row__text > .app-row__phone{ display: block; white-space: nowrap; color: var(--ink); font-size: 13px; }
 .app-row__value{ font-size: 14px; font-weight: 600; white-space: nowrap; }
 .app-row__chevron{ font-size: 18px; color: var(--ink-soft); flex-shrink: 0; }
 .app-row.has-error .app-row__text > span{ color: var(--red-500); }
@@ -1234,8 +1237,8 @@ body.has-checkout-bar .toast{ bottom: calc(96px + env(safe-area-inset-bottom)); 
 .app-textarea:focus{ border-color: var(--maroon-700); }
 
 /* form fields + payment options (used inside sheets) */
-.field-grid{ display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4) var(--space-3); }
-.field{ display: flex; flex-direction: column; gap: 6px; margin-bottom: var(--space-4); }
+.field-grid{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4) var(--space-3); }
+.field{ display: flex; flex-direction: column; gap: 6px; margin-bottom: var(--space-4); min-width: 0; }
 .field label{ font-size: 12.5px; font-weight: 600; color: var(--ink); }
 .field label .req{ color: var(--red-500); }
 .field input, .field select, .field textarea{
@@ -1245,6 +1248,8 @@ body.has-checkout-bar .toast{ bottom: calc(96px + env(safe-area-inset-bottom)); 
   font-size: 14px;
   color: var(--ink);
   background: var(--white);
+  width: 100%;
+  min-width: 0;
 }
 .field input:focus, .field select:focus, .field textarea:focus{ border-color: var(--maroon-700); }
 .field-error{ font-size: 11.5px; color: var(--red-500); display: none; }
@@ -1303,6 +1308,11 @@ body.has-checkout-bar .toast{ bottom: calc(96px + env(safe-area-inset-bottom)); 
 }
 @media (max-width: 380px){
   .app-checkout-bar .btn{ min-width: 0; padding-inline: 18px; }
+}
+/* 16px stops iPhone Safari from zooming into fields on tap */
+@media (max-width: 767px){
+  .field input, .field select, .field textarea,
+  .coupon-form input, .app-textarea{ font-size: 16px; }
 }
 @media (min-width: 900px){
   .app-bar{

@@ -154,11 +154,12 @@
       const a = state.address;
       const missing = state.submitted && !a;
       return `
-        <button class="app-row${missing ? " has-error" : ""}" type="button" data-sheet="address-sheet">
+        <button class="app-row${a ? " app-row--address" : ""}${missing ? " has-error" : ""}" type="button" data-sheet="address-sheet">
           <span class="app-row__icon">${icon("map-pin")}</span>
           <span class="app-row__text">
             ${a
-              ? `<strong>${esc(a.name)} <span class="app-row__muted">${esc(a.phone)}</span></strong>
+              ? `<strong>${esc(a.name)}</strong>
+                 <span class="app-row__phone">${esc(a.phone)}</span>
                  <span>${esc(a.street)}, ${esc(a.postcode)} ${esc(a.city)}, ${esc(a.state)}</span>`
               : `<strong>Add shipping address</strong><span>${missing ? "Add your address to place the order" : "Where should we send your order?"}</span>`}
           </span>
