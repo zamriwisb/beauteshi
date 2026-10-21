@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Shopping cart — Beauté Shi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400..700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.34.0/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="app-page">
+  <div id="site-header"></div>
+  <div id="app-bar"></div>
+
+  <main class="app-main" id="cart-root"></main>
+
+  <div class="app-checkout-bar" id="cart-bar" hidden></div>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    renderHeader("");
+    renderFooter();
+
+    const root = document.getElementById("cart-root");
+    const bar = document.getElementById("cart-bar");
+    const couponSheet = mountCouponSheet(render);
+    let variantLineId = null;
+
+    document.body.insertAdjacentHTML("beforeend", sheetHTML("variant-sheet", "Choose option", `<div class="option-tiles" id="variant-tiles"></div>`));
+
+    function lineHTML({ product: p, qty }){
+      const listing = getListing(p.id);
+      const multi = listing.options.length > 1;
+      const off = p.compareAt ? Math.round((1 - p.price / p.compareAt) * 100) : 0;
+      return `
+        <li class="ci" data-id="${p.id}">
+          <a class="ci__media" href="product.html?id=${p.id}"><img src="${p.images[0]}" alt=""></a>
+          <div class="ci__info">
+            <div class="ci__top">
+              <a class="ci__name" href="product.html?id=${p.id}">${listing.title}</a>
+              <button class="ci__remove" type="button" data-remove aria-label="Remove ${p.name}">${ICONS.trash}</button>
+            </div>
+            ${multi
+              ? `<button class="ci__variant" type="button" data-variant aria-label="Change option, currently ${p.name}">${p.name}${icon("chevron-down")}</button>`
+              : p.includes ? `<span class="ci__meta">${p.includes}</span>` : ""}
+            <div class="ci__bottom">
+              <div class="ci__price">
+                <strong>${formatRM(p.price)}</strong>
+                ${off ? `<span><s>${formatRM(p.compareAt)}</s><em>-${off}%</em></span>` : ""}
+              </div>
+              <div class="tt-stepper" aria-label="Quantity for ${p.name}">
+                <button type="button" data-qty="-1" aria-label="Decrease quantity" ${qty <= 1 ? "disabled" : ""}>${icon("minus")}</button>
+                <output>${qty}</output>
+                <button type="button" data-qty="1" aria-label="Increase quantity">${icon("plus")}</button>
+              </div>
+            </div>
+          </div>
+        </li>`;
+    }
+
+    function render(){
+      const count = Cart.count();
+      document.getElementById("app-bar").outerHTML = appBarHTML(`Shopping cart${count ? ` (${count})` : ""}`, "index.html");
+      const t = orderTotals(null);
+
+      if(!t.lines.length){
+        bar.hidden = true;
+        document.body.classList.remove("has-checkout-bar");
+        root.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state__icon" aria-hidden="true">${ICONS.bag}</div>
+            <h2>Your cart is empty</h2>
+            <p>Browse body care, skincare and combos to start your routine.</p>
+            <a class="btn btn-primary btn-lg" href="index.html#products">Shop products</a>
+          </div>`;
+        return;
+      }
+
+      const remaining = FREE_SHIPPING_MIN - t.subtotal;
+      root.innerHTML = `
+        <div class="app-notice">
+          ${icon("truck-delivery")}
+          <div>
+            <p>${remaining > 0
+              ? `Add <strong>${formatRM(remaining)}</strong> more for free shipping`
+              : `Your order ships <strong>free</strong>`}</p>
+            <div class="progress"><span style="width:${Math.min(100, (t.subtotal / FREE_SHIPPING_MIN) * 100)}%"></span></div>
+          </div>
+        </div>
+        <ul class="app-group ci-list">${t.lines.map(lineHTML).join("")}</ul>
+        <div class="app-group">${couponRowHTML(t)}</div>
+        <a class="app-link" href="index.html#products">${icon("chevron-left")}Continue shopping</a>`;
+
+      bar.hidden = false;
+      document.body.classList.add("has-checkout-bar");
+      bar.innerHTML = `
+        <div class="app-checkout-bar__inner">
+          <div class="app-checkout-bar__total">
+            <strong>${formatRM(t.total)}</strong>
+            ${t.saved > 0 ? `<span class="is-saving">You save ${formatRM(t.saved)}</span>` : `<span>Shipping calculated at checkout</span>`}
+          </div>
+          <a class="btn btn-primary btn-lg" href="checkout.html">Check out (${count})</a>
+        </div>`;
+    }
+
+    root.addEventListener("click", (e) => {
+      const couponBtn = e.target.closest("[data-open-coupon]");
+      if(couponBtn) return couponSheet.open(couponBtn);
+      const line = e.target.closest(".ci");
+      if(!line) return;
+      const id = line.dataset.id;
+      const qty = Cart.read().find((i) => i.id === id)?.qty || 0;
+
+      const step = e.target.closest("[data-qty]");
+      if(step){
+        Cart.setQty(id, Math.max(1, Math.min(99, qty + Number(step.dataset.qty))));
+        render();
+        root.querySelector(`.ci[data-id="${id}"] [data-qty="${step.dataset.qty}"]:not([disabled])`)?.focus();
+        return;
+      }
+      if(e.target.closest("[data-remove]")){
+        const name = getProduct(id).name;
+        Cart.remove(id);
+        render();
+        showToast(`Removed ${name}`);
+        return;
+      }
+      const variant = e.target.closest("[data-variant]");
+      if(variant){
+        variantLineId = id;
+        document.getElementById("variant-tiles").innerHTML = getListing(id).options.map(getProduct).map((o) => `
+          <button class="option-tile${o.id === id ? " is-active" : ""}" type="button" data-pick="${o.id}" aria-pressed="${o.id === id}">
+            <span class="option-tile__media"><img src="${o.images[0]}" alt=""></span>
+            <span class="option-tile__name">${o.name}</span>
+            <span class="option-tile__price">${formatRM(o.price)}</span>
+          </button>`).join("");
+        Sheets.open("variant-sheet", variant);
+      }
+    });
+
+    document.getElementById("variant-tiles").addEventListener("click", (e) => {
+      const pick = e.target.closest("[data-pick]");
+      if(!pick || !variantLineId) return;
+      Cart.replace(variantLineId, pick.dataset.pick);
+      Sheets.lastFocus = null;
+      Sheets.close();
+      render();
+      root.querySelector(`.ci[data-id="${pick.dataset.pick}"] [data-variant]`)?.focus();
+    });
+
+    render();
+  </script>
+</body>
+</html>

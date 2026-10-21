@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Product — Beauté Shi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400..700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.34.0/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="pdp">
+  <div id="site-header"></div>
+
+  <!-- Mobile top bar (TikTok-style) -->
+  <div class="pdp-topbar">
+    <a class="pdp-topbar__btn" href="index.html" aria-label="Back to shop" id="back-btn">
+      <i class="ti ti-chevron-left" aria-hidden="true"></i>
+    </a>
+    <a class="pdp-search" href="index.html#products">
+      <i class="ti ti-search" aria-hidden="true"></i>
+      <span>Search Beauté Shi</span>
+    </a>
+    <button class="pdp-topbar__btn" type="button" id="share-btn" aria-label="Share this product">
+      <i class="ti ti-share-3" aria-hidden="true"></i>
+    </button>
+    <a class="pdp-topbar__btn" href="cart.html" aria-label="Cart">
+      <i class="ti ti-shopping-cart" aria-hidden="true"></i>
+      <span class="cart-count" data-cart-count hidden>0</span>
+    </a>
+  </div>
+
+  <main class="pdp-main">
+    <div class="container pdp-container">
+      <nav class="breadcrumb pdp-breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a><span aria-hidden="true">/</span>
+        <a href="index.html#products" id="crumb-cat">Shop</a><span aria-hidden="true">/</span>
+        <span aria-current="page" id="crumb-name"></span>
+      </nav>
+
+      <div class="pdp-grid">
+        <!-- Gallery -->
+        <section class="pdp-gallery" aria-label="Product images">
+          <div class="pdp-gallery__frame">
+            <div class="pdp-track" id="track" tabindex="0" aria-label="Swipe to see more images"></div>
+            <span class="pdp-counter" id="counter" aria-live="polite"></span>
+            <button class="pdp-arrow pdp-arrow--prev" type="button" data-slide="-1" aria-label="Previous image">
+              <i class="ti ti-chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="pdp-arrow pdp-arrow--next" type="button" data-slide="1" aria-label="Next image">
+              <i class="ti ti-chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="pdp-thumbs" id="thumbs"></div>
+        </section>
+
+        <!-- Info column -->
+        <div class="pdp-info">
+          <section class="pdp-card pdp-summary">
+            <div class="pdp-price-row">
+              <span class="tt-price" id="price"></span>
+              <span class="pdp-was" id="was"></span>
+              <span class="pdp-off" id="off"></span>
+            </div>
+
+            <div class="pdp-chips" id="chips"></div>
+
+            <div class="pdp-title-row">
+              <h1 class="pdp-title" id="title"></h1>
+              <button class="pdp-save-btn" type="button" id="wish-btn" aria-pressed="false" aria-label="Save to wishlist">
+                <i class="ti ti-bookmark" aria-hidden="true"></i>
+              </button>
+            </div>
+
+            <div class="pdp-rating" id="rating"></div>
+          </section>
+
+          <!-- Mobile: compact options row that opens the sheet -->
+          <button class="pdp-card pdp-options-row" type="button" id="options-row" data-open-sheet="cart">
+            <span class="pdp-options-row__label">Options</span>
+            <span class="pdp-options-row__thumbs" id="options-row-thumbs"></span>
+            <span class="pdp-options-row__text" id="options-row-text"></span>
+            <i class="ti ti-chevron-right pdp-chevron" aria-hidden="true"></i>
+          </button>
+
+          <!-- Desktop: inline options -->
+          <section class="pdp-card pdp-buybox" aria-label="Choose options">
+            <h2 class="pdp-section-title" id="inline-options-title"></h2>
+            <div class="option-tiles" id="inline-tiles"></div>
+            <div class="pdp-qty-row">
+              <span>Quantity</span>
+              <div class="tt-stepper" data-stepper>
+                <button type="button" data-qty-step="-1" aria-label="Decrease quantity"><i class="ti ti-minus" aria-hidden="true"></i></button>
+                <output data-qty-value>1</output>
+                <button type="button" data-qty-step="1" aria-label="Increase quantity"><i class="ti ti-plus" aria-hidden="true"></i></button>
+              </div>
+            </div>
+            <div class="pdp-buybox__actions">
+              <button class="btn btn-outline btn-lg" type="button" data-action="cart">Add to cart</button>
+              <button class="btn btn-primary btn-lg" type="button" data-action="buy">Buy now</button>
+            </div>
+          </section>
+
+          <section class="pdp-card pdp-ship">
+            <i class="ti ti-truck-delivery" aria-hidden="true"></i>
+            <div>
+              <strong id="ship-title"></strong>
+              <span>Arrives in 2–4 working days in Peninsular Malaysia, 4–7 to Sabah &amp; Sarawak.</span>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <section class="pdp-card pdp-reviews" aria-labelledby="reviews-title">
+        <div class="pdp-section-head">
+          <h2 class="pdp-section-title" id="reviews-title">Customer reviews</h2>
+          <a class="pdp-see-all" href="index.html#reviews">See all</a>
+        </div>
+        <div class="pdp-rating pdp-rating--lg" id="rating-lg"></div>
+        <div class="pdp-review-photos">
+          <img src="https://platform-bcl.bsb-cdn.com/media/2026/09/01M3KDBWNSPS9FWZEERW5C9XSD.jpg" alt="Customer photo" loading="lazy">
+          <img src="https://platform-bcl.bsb-cdn.com/media/2026/09/01M3KDBXEPQ0X3CGXEE3P42FBX.jpg" alt="Customer photo" loading="lazy">
+          <img src="https://platform-bcl.bsb-cdn.com/media/2026/09/01M3KDBYFNVWNEV5KEAXV6JPY5.jpg" alt="Customer photo" loading="lazy">
+          <img src="https://platform-bcl.bsb-cdn.com/media/2026/09/01M3KDBZMH09B2ZHA454TW0XG0.jpg" alt="Customer photo" loading="lazy">
+        </div>
+      </section>
+
+      <section class="pdp-card pdp-desc" aria-labelledby="desc-title">
+        <h2 class="pdp-section-title" id="desc-title">Description</h2>
+        <div class="pdp-desc__body is-clamped" id="desc-body"></div>
+        <button class="pdp-see-more" type="button" id="see-more" aria-expanded="false">See more</button>
+      </section>
+
+      <section class="pdp-card pdp-related" aria-labelledby="related-title">
+        <h2 class="pdp-section-title" id="related-title">You may also like</h2>
+        <div class="product-grid" id="related"></div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Mobile bottom action bar (TikTok-style) -->
+  <div class="tt-bar" role="toolbar" aria-label="Product actions">
+    <a class="tt-bar__icon" href="index.html">
+      <i class="ti ti-building-store" aria-hidden="true"></i>
+      <span>Shop</span>
+    </a>
+    <a class="tt-bar__icon" href="#" aria-label="Chat with Beauté Shi on WhatsApp">
+      <i class="ti ti-message-circle" aria-hidden="true"></i>
+      <span>Chat</span>
+    </a>
+    <button class="tt-bar__cart" type="button" data-open-sheet="cart" aria-label="Add to cart">
+      <i class="ti ti-shopping-cart-plus" aria-hidden="true"></i>
+    </button>
+    <button class="tt-bar__buy" type="button" data-open-sheet="buy">
+      <strong>Buy now</strong>
+      <span id="bar-sub"></span>
+    </button>
+  </div>
+
+  <!-- Options sheet -->
+  <div class="sheet" id="sheet" aria-hidden="true">
+    <div class="sheet__backdrop" data-close-sheet></div>
+    <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="sheet-options-title">
+      <button class="sheet__close" type="button" data-close-sheet aria-label="Close">
+        <i class="ti ti-x" aria-hidden="true"></i>
+      </button>
+      <div class="sheet__head">
+        <img class="sheet__thumb" id="sheet-thumb" src="" alt="">
+        <div>
+          <div class="tt-price" id="sheet-price"></div>
+          <span class="tt-ship-chip" id="sheet-ship"></span>
+          <p class="sheet__selected" id="sheet-selected"></p>
+        </div>
+      </div>
+      <div class="sheet__body">
+        <h2 class="pdp-section-title" id="sheet-options-title"></h2>
+        <div class="option-tiles option-tiles--sheet" id="sheet-tiles"></div>
+        <div class="pdp-qty-row">
+          <span>Quantity</span>
+          <div class="tt-stepper" data-stepper>
+            <button type="button" data-qty-step="-1" aria-label="Decrease quantity"><i class="ti ti-minus" aria-hidden="true"></i></button>
+            <output data-qty-value>1</output>
+            <button type="button" data-qty-step="1" aria-label="Increase quantity"><i class="ti ti-plus" aria-hidden="true"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="sheet__foot">
+        <button class="tt-confirm" type="button" id="sheet-confirm"></button>
+      </div>
+    </div>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/product.js"></script>
+</body>
+</html>

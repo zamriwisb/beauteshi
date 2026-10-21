@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beauté Shi — Secret of Beauté</title>
+  <meta name="description" content="Beauty and wellness essentials for your everyday self-care routine.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400..700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.34.0/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div>
+          <span class="eyebrow">Secret of Beauté</span>
+          <h1>Naturally glowing, confident you.</h1>
+          <p class="lede">Body care and wellness essentials that fit into your daily routine — from your morning shower to your night cream.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary btn-lg" href="#products">Shop products</a>
+            <a class="btn btn-outline btn-lg" href="#combos">View combos</a>
+          </div>
+        </div>
+        <div class="hero-art">
+          <div class="hero-art__card hero-art__card--photo">
+            <img src="https://platform-bcl.bsb-cdn.com/media/2026/09/01M3KD0N20WQC60CQG3M9FM6GT.jpg" alt="The full Beauté Shi collection">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" aria-label="Why shop with us">
+      <div class="container">
+        <div class="feature">
+          <span class="feature__icon"><i class="ti ti-sparkles" aria-hidden="true"></i></span>
+          <div><strong>Everyday essentials</strong><span>Made for daily self-care</span></div>
+        </div>
+        <div class="feature">
+          <span class="feature__icon"><i class="ti ti-truck-delivery" aria-hidden="true"></i></span>
+          <div><strong>Free shipping</strong><span>For orders above RM150</span></div>
+        </div>
+        <div class="feature">
+          <span class="feature__icon"><i class="ti ti-shield-check" aria-hidden="true"></i></span>
+          <div><strong>Secure payment</strong><span>FPX, cards and e-wallets</span></div>
+        </div>
+        <div class="feature">
+          <span class="feature__icon"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i></span>
+          <div><strong>Customer care</strong><span>Chat with us on WhatsApp</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="products">
+      <div class="container">
+        <div class="section-head">
+          <h2>Your skin. Your routine. Your glow.</h2>
+          <p>Body care, skincare and wellness essentials for every skin type.</p>
+        </div>
+        <div class="filters" role="tablist" aria-label="Filter products">
+          <button class="filter-btn is-active" type="button" role="tab" aria-selected="true" data-filter="all">All products</button>
+          <button class="filter-btn" type="button" role="tab" aria-selected="false" data-filter="skincare">Skincare / Bodycare</button>
+          <button class="filter-btn" type="button" role="tab" aria-selected="false" data-filter="supplement">Supplement</button>
+          <button class="filter-btn" type="button" role="tab" aria-selected="false" data-filter="set">Set products</button>
+        </div>
+        <div class="product-grid" id="product-grid"></div>
+      </div>
+    </section>
+
+    <section class="section section--tint" id="about">
+      <div class="container split">
+        <img src="https://platform-bcl.bsb-cdn.com/media/2026/09/01M3KKDQJRR4FNCJ9KQKAYGAVZ.jpeg" alt="Beauté Shi products on a bathroom shelf" loading="lazy">
+        <div>
+          <span class="eyebrow">About Beauté Shi</span>
+          <h2 class="about-title">Beauty begins with your everyday ritual.</h2>
+          <p class="about-copy">Beauté Shi brings together beauty and wellness essentials that fit naturally into your day. From body care to wellness drinks, every step is a small moment for yourself.</p>
+          <div class="reasons">
+            <div class="reason">
+              <h3>Easy routine</h3>
+              <p>Simple steps you can keep up with every day.</p>
+            </div>
+            <div class="reason">
+              <h3>Self-care</h3>
+              <p>A few minutes each day that are just for you.</p>
+            </div>
+            <div class="reason">
+              <h3>Feel confident</h3>
+              <p>Skin that feels comfortable, every day.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="combos">
+      <div class="container">
+        <div class="section-head">
+          <h2>More beauty, better value.</h2>
+          <p>Our product combinations put a full routine together for less than buying each item on its own.</p>
+        </div>
+        <div class="rail" id="combo-rail"></div>
+      </div>
+    </section>
+
+    <section class="section section--tint" id="reviews">
+      <div class="container">
+        <div class="section-head">
+          <h2>Real customers, real results.</h2>
+          <p>Messages and photos shared by Beauté Shi customers.</p>
+        </div>
+        <div class="rail review-rail">
+          <img src="https://platform-bcl.bsb-cdn.com/media/2026/09/01M3KDBWNSPS9FWZEERW5C9XSD.jpg" alt="Customer feedback" loading="lazy">
+          <img src="https://platform-bcl.bsb-cdn.com/media/2026/09/01M3KDBXEPQ0X3CGXEE3P42FBX.jpg" alt="Customer feedback" loading="lazy">
+          <img src="https://platform-bcl.bsb-cdn.com/media/2026/09/01M3KDBXYYZNA8PHKKMM6H5QK0.jpg" alt="Customer feedback" loading="lazy">
+          <img src="https://platform-bcl.bsb-cdn.com/media/2026/09/01M3KDBYFNVWNEV5KEAXV6JPY5.jpg" alt="Customer feedback" loading="lazy">
+          <img src="https://platform-bcl.bsb-cdn.com/media/2026/09/01M3KDBZMH09B2ZHA454TW0XG0.jpg" alt="Customer feedback" loading="lazy">
+          <img src="https://platform-bcl.bsb-cdn.com/media/2026/09/01M3KDBZ0W32KKS1ZAD3XVY8EX.jpg" alt="Customer feedback" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="container">
+        <h2>Your beauty routine starts here.</h2>
+        <p>Pick a single product or a combo and check out in a few minutes.</p>
+        <a class="btn btn-outline btn-lg" href="#products">Shop now</a>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    renderHeader("home");
+    renderFooter();
+
+    const grid = document.getElementById("product-grid");
+    function showProducts(filter){
+      grid.innerHTML = catalog()
+        .map((l) => ({ l, match: filter === "all" ? l.options[0] : l.options.find((id) => getProduct(id).category === filter) }))
+        .filter(({ match }) => match)
+        .map(({ l, match }) => productCard(l, match))
+        .join("");
+    }
+    showProducts("all");
+
+    document.querySelector(".filters").addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-filter]");
+      if(!btn) return;
+      document.querySelectorAll(".filter-btn").forEach((b) => {
+        b.classList.toggle("is-active", b === btn);
+        b.setAttribute("aria-selected", String(b === btn));
+      });
+      showProducts(btn.dataset.filter);
+    });
+
+    document.getElementById("combo-rail").innerHTML = PRODUCTS.filter((p) => p.includes)
+      .map((p) => `
+        <article class="combo-card">
+          <a class="combo-card__media" href="product.html?id=${p.id}"><img src="${p.images[0]}" alt="${p.name}" loading="lazy"></a>
+          <div class="combo-card__body">
+            <h3 class="combo-card__name"><a href="product.html?id=${p.id}">${p.name}</a></h3>
+            <p class="combo-card__items">${p.includes}</p>
+            <div class="price">
+              <span class="price__now">${formatRM(p.price)}</span>
+              ${p.compareAt ? `<span class="price__was">${formatRM(p.compareAt)}</span>` : ""}
+            </div>
+            <button class="btn btn-primary btn-block mt-16" type="button" data-add="${p.id}">Add to cart</button>
+          </div>
+        </article>`)
+      .join("");
+
+    bindProductCards();
+  </script>
+</body>
+</html>
