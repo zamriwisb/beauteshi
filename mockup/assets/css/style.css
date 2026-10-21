@@ -226,21 +226,21 @@ p{ margin: 0; }
 .breadcrumb span[aria-current]{ color: var(--maroon-900); font-weight: 600; }
 
 /* ---------- Hero banner ---------- */
-.hero-banner{ position: relative; overflow: hidden; background: #fbe3e8; }
-.hero-banner__link{ position: relative; display: block; max-width: 1600px; margin-inline: auto; }
-/* beyond 1600px, fill the sides with a soft blur of the banner instead of flat colour */
-@media (min-width: 1601px){
-  .hero-banner::before{
-    content: "";
-    position: absolute;
-    inset: -60px;
-    background: url("../img/hero-berry-scrub-900.webp") center / cover no-repeat;
-    filter: blur(48px);
-    opacity: 0.85;
-  }
+.hero-banner{ padding-block: var(--space-4) var(--space-8); }
+.hero-banner__link{
+  display: block;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #fbe3e8;
+  transition: box-shadow 0.2s ease;
 }
-.hero-banner__link:focus-visible{ outline-offset: -4px; }
+.hero-banner__link:hover{ box-shadow: var(--shadow-card); }
+.hero-banner__link:focus-visible{ outline-offset: 3px; }
 .hero-banner img{ width: 100%; height: auto; }
+@media (max-width: 767px){
+  .hero-banner{ padding-block: var(--space-3) var(--space-5); }
+  .hero-banner__link{ border-radius: 16px; }
+}
 
 .eyebrow{
   font-size: 12.5px;
