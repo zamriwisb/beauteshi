@@ -53,7 +53,7 @@ function cardHTML(listing, selectedId){
       ${photoHTML(p, href)}
       <div class="c-card__body">
         <h3 class="c-card__name"><a href="${href}">${p.name}</a></h3>
-        <div class="c-rating">${icon("star-filled")}<strong>${listing.rating.toFixed(1)}</strong><span>(${listing.reviews})</span><span>· ${listing.sold} sold</span></div>
+        <div class="c-rating">${icon("star-filled")}<strong>${listing.rating.toFixed(1)}</strong><span>(${listing.reviews})</span></div>
         ${priceHTML(p)}
         ${options.length > 1 ? `
           <div class="swatches" role="group" aria-label="${options.length} options">

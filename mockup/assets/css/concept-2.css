@@ -1,0 +1,190 @@
+/* ==========================================================================
+   Beauté Shi — Concept 2: "simple, cantik, teratur"
+   Loaded only by concept-2.html, after style.css. Shared components are
+   restyled under body.concept2 so the live homepage is unaffected.
+   White base, soft pink bands, left-aligned headings, one card style.
+   Fonts: Playfair Display (headings), DM Sans (body)
+   ========================================================================== */
+
+body.concept2{
+  --k-pink: #fbe7ea;
+  --k-pink-2: #f6d3d9;
+  --k-red: #e12028;
+  --k-red-dark: #b8141c;
+  --k-ink: #2d1b1e;
+  --k-muted: #7a6266;
+  --k-line: #efdfe1;
+
+  --font-display: "Playfair Display", serif;
+  --font-body: "DM Sans", sans-serif;
+
+  font-family: var(--font-body);
+  color: var(--k-ink);
+  background: var(--white);
+}
+.concept2 h1, .concept2 h2, .concept2 h3{ font-family: var(--font-display); letter-spacing: 0; color: var(--k-ink); }
+.concept2 main [id]{ scroll-margin-top: 90px; }
+
+/* ---------- header (standard row) ---------- */
+.concept2 .announce{ background: var(--k-red); font-family: var(--font-body); font-weight: 600; letter-spacing: 0.04em; }
+.concept2 .site-header{ background: rgba(255, 255, 255, 0.97); border-bottom: 1px solid var(--k-line); }
+.concept2 .nav a{ font-family: var(--font-body); font-size: 14px; font-weight: 600; color: var(--k-ink); }
+.concept2 .nav a.is-active, .concept2 .nav a:hover{ color: var(--k-red); }
+.concept2 .nav a.is-active::after{ background: var(--k-red); }
+.concept2 .icon-btn, .concept2 .nav-toggle{ border-color: var(--k-line); color: var(--k-ink); }
+.concept2 .icon-btn:hover{ border-color: var(--k-red); color: var(--k-red); }
+
+/* ---------- full-width banner ---------- */
+.k-hero__banner{ display: block; background: var(--k-pink); }
+.k-hero__banner img{ width: 100%; height: auto; }
+.k-hero__banner:focus-visible{ outline: 3px solid var(--k-red); outline-offset: -3px; }
+
+/* ---------- shared ---------- */
+.k-section{ padding-block: var(--section); }
+.k-title{ font-size: clamp(28px, 3.6vw, 40px); font-weight: 700; line-height: 1.1; text-wrap: balance; }
+.k-title--center{ text-align: center; }
+.k-sub{ margin-top: var(--space-2); font-size: 15px; color: var(--k-muted); }
+.k-eyebrow{ display: block; margin-bottom: var(--space-2); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--k-red); }
+.k-head{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-6);
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--k-line);
+}
+
+.k-btn{
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 22px;
+  border: 1.5px solid var(--k-red);
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  color: var(--k-red);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.k-btn:hover{ background: var(--k-red); color: var(--white); }
+.k-btn--solid{ background: var(--k-red); color: var(--white); }
+.k-btn--solid:hover{ background: var(--k-red-dark); border-color: var(--k-red-dark); }
+.k-btn[disabled]{ opacity: 0.75; cursor: default; }
+
+/* ---------- tabs ---------- */
+.k-tabs{ display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.k-tab{
+  padding: 8px 16px;
+  border: 1px solid var(--k-line);
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--k-ink);
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+.k-tab:hover{ border-color: var(--k-red); color: var(--k-red); }
+.k-tab.is-active{ background: var(--k-ink); border-color: var(--k-ink); color: var(--white); }
+
+/* ---------- product cards ---------- */
+.k-grid{ display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-8) var(--space-6); }
+.k-card{ display: flex; flex-direction: column; }
+.k-card__photo{ position: relative; display: block; aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; background: var(--k-pink); }
+.k-card__photo img{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+.k-card:hover .k-card__photo img{ transform: scale(1.04); }
+.k-label{
+  position: absolute; top: 10px; left: 10px; z-index: 1;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  color: var(--k-red);
+  font-size: 12px; font-weight: 700;
+}
+.k-card__body{ display: flex; flex-direction: column; align-items: flex-start; gap: 6px; flex: 1; padding-top: var(--space-4); }
+.concept2 .k-card__name{ font-family: var(--font-body); font-size: 16px; font-weight: 700; line-height: 1.3; }
+.k-card__name a{ color: var(--k-ink); }
+.k-card__name a:hover{ color: var(--k-red); }
+.k-card__cat{ font-size: 13px; color: var(--k-muted); }
+.k-card__price{ display: flex; align-items: baseline; gap: 8px; }
+.k-card__price strong{ font-size: 17px; font-weight: 700; color: var(--k-red); }
+.k-card__price s{ font-size: 13px; color: var(--k-muted); }
+.k-card .swatches{ margin: 2px 0 0; }
+.concept2 .swatch{ border-radius: 50%; width: 28px; height: 28px; border-color: var(--k-line); }
+.concept2 .swatch img{ border-radius: 50%; }
+.concept2 .swatch.is-active{ border-color: var(--k-red); }
+.k-card .k-btn{ width: 100%; margin-top: auto; }
+.k-card__body > :nth-last-child(2){ margin-bottom: var(--space-3); }
+
+/* ---------- benefits ---------- */
+.k-benefits{ background: var(--k-pink); }
+.k-benefits__row{ display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: center; }
+.k-benefits__img{ width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 20px; }
+.k-benefits__list{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-5) var(--space-6); margin: var(--space-8) 0; }
+.k-benefits__list li{ display: flex; gap: var(--space-3); align-items: flex-start; }
+.k-benefits__icon{ width: 44px; height: 44px; flex-shrink: 0; border-radius: 12px; background: var(--white); color: var(--k-red); display: inline-flex; align-items: center; justify-content: center; }
+.k-benefits__icon .ti{ font-size: 22px; }
+.k-benefits__list strong{ display: block; font-size: 15px; }
+.k-benefits__list div > span{ display: block; font-size: 13.5px; color: var(--k-muted); }
+
+/* ---------- feedback ---------- */
+.k-reviews{ display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--space-4); }
+.k-reviews figure{ margin: 0; border-radius: 12px; overflow: hidden; background: var(--k-pink); }
+.k-reviews img{ width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+
+/* ---------- assurance row + footer ---------- */
+.k-assure{ border-top: 1px solid var(--k-line); border-bottom: 1px solid var(--k-line); }
+.k-assure__row{ display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.k-assure__row > div{ display: flex; align-items: center; gap: var(--space-3); padding: var(--space-5) var(--space-4); font-size: 14px; color: var(--k-muted); }
+.k-assure__row > div + div{ border-left: 1px solid var(--k-line); }
+.k-assure__row .ti{ font-size: 26px; color: var(--k-red); flex-shrink: 0; }
+.k-assure__row strong{ color: var(--k-ink); }
+.concept2 .site-footer{ background: var(--white); border-top: 0; }
+.concept2 .footer-col h4{ font-family: var(--font-body); color: var(--k-ink); }
+
+/* ---------- floating WhatsApp ---------- */
+.k-whatsapp{
+  position: fixed; right: 18px; bottom: 18px; z-index: 70;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #25d366; color: var(--white);
+  display: inline-flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 20px -6px rgba(37, 211, 102, 0.6);
+}
+.k-whatsapp .ti{ font-size: 30px; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 979px){
+  .k-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .k-reviews{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .k-head{ flex-direction: column; align-items: flex-start; gap: var(--space-4); }
+  .k-assure__row{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .k-assure__row > div:nth-child(3){ border-left: 0; }
+  .k-assure__row > div:nth-child(n + 3){ border-top: 1px solid var(--k-line); }
+}
+@media (max-width: 767px){
+  .k-head{ margin-bottom: var(--space-6); }
+  .k-tabs{ flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; width: calc(100% + 2 * var(--gutter)); margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); }
+  .k-tabs::-webkit-scrollbar{ display: none; }
+  .k-tab{ flex-shrink: 0; }
+
+  .k-grid{ gap: var(--space-6) var(--space-3); }
+  .k-card__photo{ border-radius: 12px; }
+  .k-card__body{ padding-top: var(--space-3); gap: 4px; }
+  .concept2 .k-card__name{ font-size: 14.5px; }
+  .k-card__cat{ font-size: 12px; }
+  .k-card__price strong{ font-size: 15.5px; }
+  .k-label{ font-size: 11px; top: 8px; left: 8px; }
+  .k-card .k-btn{ padding: 10px 8px; font-size: 13px; }
+
+  .k-benefits__row{ grid-template-columns: 1fr; gap: var(--space-6); }
+  .k-benefits__list{ gap: var(--space-4); margin: var(--space-6) 0; }
+  .k-benefits .k-btn{ width: 100%; }
+
+  .k-reviews{ grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-2); }
+  .k-reviews figure{ border-radius: 8px; }
+
+  .k-assure__row > div{ padding: var(--space-4) var(--space-2); font-size: 12.5px; gap: var(--space-2); }
+  .k-assure__row .ti{ font-size: 22px; }
+  .k-whatsapp{ width: 52px; height: 52px; }
+}
