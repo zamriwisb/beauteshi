@@ -432,3 +432,62 @@ document.addEventListener("click", (e) => {
     history.back();
   }
 });
+
+/* ---------- Slider (horizontal rail with arrows + dots) ---------- */
+function initSlider(rail){
+  const prev = document.querySelector(`[data-slider-prev][aria-controls="${rail.id}"]`);
+  const next = document.querySelector(`[data-slider-next][aria-controls="${rail.id}"]`);
+  const dots = document.querySelector(`[data-slider-dots="${rail.id}"]`);
+  const nav = prev?.closest(".slider-nav");
+  const smooth = () => (matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth");
+
+  // One "page" = as many whole slides as fit in the visible width.
+  function step(){
+    const first = rail.children[0];
+    if(!first) return rail.clientWidth;
+    const gap = parseFloat(getComputedStyle(rail).columnGap) || 0;
+    const slide = first.getBoundingClientRect().width + gap;
+    return Math.max(1, Math.floor((rail.clientWidth + gap) / slide)) * slide;
+  }
+  const maxScroll = () => rail.scrollWidth - rail.clientWidth;
+  const pageCount = () => (maxScroll() <= 2 ? 1 : Math.ceil(maxScroll() / step() - 0.05) + 1);
+  const current = () => (rail.scrollLeft >= maxScroll() - 2 ? pageCount() - 1 : Math.round(rail.scrollLeft / step()));
+  const goTo = (page) => rail.scrollTo({ left: Math.min(page * step(), maxScroll()), behavior: smooth() });
+
+  function buildDots(){
+    const n = pageCount();
+    dots.innerHTML = n > 1 ? Array.from({ length: n }, (_, i) =>
+      `<button class="slider-dot" type="button" data-page="${i}" aria-label="Go to page ${i + 1} of ${n}"></button>`).join("") : "";
+    if(nav) nav.hidden = n <= 1;
+    update();
+  }
+
+  function update(){
+    const page = current();
+    if(prev) prev.disabled = rail.scrollLeft <= 2;
+    if(next) next.disabled = rail.scrollLeft >= maxScroll() - 2;
+    dots.querySelectorAll(".slider-dot").forEach((d, i) => {
+      d.classList.toggle("is-active", i === page);
+      if(i === page) d.setAttribute("aria-current", "true");
+      else d.removeAttribute("aria-current");
+    });
+  }
+
+  prev?.addEventListener("click", () => goTo(current() - 1));
+  next?.addEventListener("click", () => goTo(current() + 1));
+  dots.addEventListener("click", (e) => {
+    const dot = e.target.closest("[data-page]");
+    if(dot) goTo(Number(dot.dataset.page));
+  });
+
+  let ticking = false;
+  rail.addEventListener("scroll", () => {
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { update(); ticking = false; });
+  }, { passive: true });
+
+  new ResizeObserver(buildDots).observe(rail);
+  rail.querySelectorAll("img").forEach((img) => img.addEventListener("load", buildDots, { once: true }));
+  buildDots();
+}

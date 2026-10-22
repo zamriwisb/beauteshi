@@ -423,15 +423,17 @@ p{ margin: 0; }
 .reason p{ color: var(--ink-soft); font-size: 14.5px; }
 @media (max-width: 760px){ .reasons{ grid-template-columns: 1fr; } }
 
-/* ---------- Combos rail ---------- */
+/* ---------- Sliders (combos, reviews) ---------- */
 .rail{
   display: flex;
   gap: var(--space-4);
   overflow-x: auto;
-  padding-bottom: var(--space-3);
+  padding-block: 2px var(--space-1);
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
+.rail:focus-visible{ outline-offset: 4px; border-radius: var(--radius-card); }
 @media (max-width: 767px){
   .rail{
     gap: var(--space-3);
@@ -440,19 +442,72 @@ p{ margin: 0; }
     scroll-padding-inline: var(--gutter);
   }
 }
-.rail::-webkit-scrollbar{ height: 6px; }
-.rail::-webkit-scrollbar-thumb{ background: var(--line-strong); border-radius: 10px; }
+.rail::-webkit-scrollbar{ display: none; }
+
+.section-head--slider{
+  max-width: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-6);
+}
+.section-head--slider > div:first-child{ max-width: 640px; }
+.slider-nav{ display: flex; gap: var(--space-2); flex-shrink: 0; }
+.slider-btn{
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: var(--white);
+  color: var(--maroon-900);
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+}
+.slider-btn .ti{ font-size: 20px; }
+.slider-btn:hover:not(:disabled){ background: var(--maroon-700); border-color: var(--maroon-700); color: var(--white); }
+.slider-btn:disabled{ opacity: 0.35; cursor: default; }
+
+.slider-dots{ display: flex; justify-content: center; margin-top: var(--space-4); }
+.slider-dots:empty{ display: none; }
+.slider-dot{
+  width: 24px; height: 24px;
+  padding: 0;
+  border: none;
+  background: none;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.slider-dot::before{
+  content: "";
+  width: 8px; height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--line-strong);
+  transition: width 0.2s ease, background-color 0.2s ease;
+}
+.slider-dot:hover::before{ background: var(--ink-soft); }
+.slider-dot.is-active::before{ width: 22px; background: var(--maroon-700); }
+
+@media (max-width: 767px){
+  .section-head--slider{ gap: var(--space-4); }
+  .slider-btn{ width: 38px; height: 38px; }
+  .slider-btn .ti{ font-size: 18px; }
+}
+
 .combo-card{
   scroll-snap-align: start;
-  flex: 0 0 240px;
+  flex: 0 0 calc((100% - 3 * var(--space-4)) / 4);
+  display: flex;
+  flex-direction: column;
   background: var(--white);
   border: 1px solid var(--line);
   border-radius: var(--radius-card);
   overflow: hidden;
 }
-.combo-card__media{ aspect-ratio: 4/5; background: var(--blush-100); }
-.combo-card__media img{ width: 100%; height: 100%; object-fit: cover; }
-.combo-card__body{ padding: var(--space-4); }
+@media (max-width: 979px){ .combo-card{ flex-basis: calc((100% - 2 * var(--space-4)) / 3); } }
+@media (max-width: 767px){ .combo-card{ flex-basis: 72%; } }
+.combo-card__media{ position: relative; flex-shrink: 0; aspect-ratio: 4/5; overflow: hidden; background: var(--blush-100); }
+.combo-card__media img{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.combo-card__body{ padding: var(--space-4); display: flex; flex-direction: column; flex: 1; }
+.combo-card__body .btn{ margin-top: auto; }
+.combo-card__body .price{ margin-bottom: var(--space-4); }
 .combo-card__name{ font-family: var(--font-body); font-weight: 700; font-size: 13.5px; color: var(--maroon-900); margin-bottom: var(--space-1); }
 .combo-card__items{ font-size: 12px; color: var(--ink-soft); margin-bottom: var(--space-2); }
 
@@ -1303,8 +1358,8 @@ body.has-checkout-bar .toast{ bottom: calc(96px + env(safe-area-inset-bottom)); 
 #about .reason h3{ margin: 0; }
 @media (max-width: 520px){ #about .reason{ grid-template-columns: 1fr; gap: 2px; } }
 .review-rail img{
-  flex: 0 0 auto;
-  width: 200px;
+  flex: 0 0 calc((100% - 4 * var(--space-4)) / 5);
+  min-width: 0;
   height: auto;
   align-self: flex-start;
   aspect-ratio: 9/16;
@@ -1326,3 +1381,6 @@ body.has-checkout-bar .toast{ bottom: calc(96px + env(safe-area-inset-bottom)); 
   position: absolute; width: 1px; height: 1px;
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
 }
+
+@media (max-width: 979px){ .review-rail img{ flex-basis: calc((100% - 2 * var(--space-4)) / 3); } }
+@media (max-width: 767px){ .review-rail img{ flex-basis: 44%; } }
