@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beauté Shi — Concept homepage</title>
+  <meta name="description" content="Beauté Shi strawberry body care and wellness essentials.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500..700&family=Caveat:wght@600;700&family=Nunito:wght@400..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.34.0/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/concept.css">
+</head>
+<body class="concept">
+  <div id="site-header"></div>
+
+  <main>
+    <!-- Hero -->
+    <section class="c-hero c-scallop">
+      <div class="container">
+        <h1 class="visually-hidden">Beauté Shi — strawberry body care for brighter, softer skin</h1>
+        <div class="c-hero__frame">
+          <i class="ti ti-sparkles c-spark c-spark--1" aria-hidden="true"></i>
+          <i class="ti ti-sparkles c-spark c-spark--2" aria-hidden="true"></i>
+          <i class="ti ti-heart-filled c-spark c-spark--3" aria-hidden="true"></i>
+          <i class="ti ti-sparkles c-spark c-spark--4" aria-hidden="true"></i>
+          <a class="c-hero__banner" href="product.html?id=berry-scrub">
+            <img
+              src="assets/img/hero-berry-scrub-1774.webp"
+              srcset="assets/img/hero-berry-scrub-900.webp 900w, assets/img/hero-berry-scrub-1774.webp 1774w"
+              sizes="(min-width: 1180px) 1100px, calc(100vw - 48px)"
+              width="1774" height="887" fetchpriority="high"
+              alt="Beauté Shi Berry Scrub, whitening scrub and mask for face and body. Shop Berry Scrub.">
+          </a>
+        </div>
+        <p class="c-hero__tagline">
+          Strawberry care for your everyday glow <i class="ti ti-heart-filled" aria-hidden="true"></i>
+        </p>
+        <div class="c-hero__cta">
+          <a class="c-btn c-btn--berry" href="product.html?id=berry-scrub">Shop Berry Scrub</a>
+          <a class="c-btn c-btn--ghost" href="#products">See all products</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust badges -->
+    <section class="c-trust" aria-label="Why shop with us">
+      <div class="container c-trust__row">
+        <div class="c-trust__item">
+          <span class="c-trust__icon"><i class="ti ti-truck-delivery" aria-hidden="true"></i></span>
+          <strong>Free shipping</strong><span>On orders above RM150</span>
+        </div>
+        <div class="c-trust__item">
+          <span class="c-trust__icon"><i class="ti ti-shield-check" aria-hidden="true"></i></span>
+          <strong>Secure payment</strong><span>FPX, cards and e-wallets</span>
+        </div>
+        <div class="c-trust__item">
+          <span class="c-trust__icon"><i class="ti ti-leaf" aria-hidden="true"></i></span>
+          <strong>Face &amp; body care</strong><span>Made for daily routines</span>
+        </div>
+        <div class="c-trust__item">
+          <span class="c-trust__icon"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i></span>
+          <strong>Friendly support</strong><span>Chat with us on WhatsApp</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shop -->
+    <section class="c-section c-shop" id="products">
+      <div class="container">
+        <div class="c-head c-head--center">
+          <h2 class="c-title">Shop Beauté Shi</h2>
+          <span class="c-tag">our berry glow picks</span>
+        </div>
+        <div class="c-filters" role="tablist" aria-label="Filter products">
+          <button class="c-filter is-active" type="button" role="tab" aria-selected="true" data-filter="all">All</button>
+          <button class="c-filter" type="button" role="tab" aria-selected="false" data-filter="skincare">Skincare &amp; Bodycare</button>
+          <button class="c-filter" type="button" role="tab" aria-selected="false" data-filter="supplement">Supplement</button>
+          <button class="c-filter" type="button" role="tab" aria-selected="false" data-filter="set">Sets</button>
+        </div>
+        <div class="c-grid" id="c-grid"></div>
+      </div>
+    </section>
+
+    <!-- Combos -->
+    <section class="c-section c-combos c-scallop c-scallop--top" id="combos">
+      <div class="container">
+        <div class="c-head c-head--row">
+          <div>
+            <h2 class="c-title c-title--light">Combo Jimat</h2>
+            <span class="c-tag c-tag--light">more glow, more savings</span>
+          </div>
+          <div class="slider-nav">
+            <button class="slider-btn" type="button" data-slider-prev aria-controls="c-combo-rail" aria-label="Previous combos"><i class="ti ti-chevron-left" aria-hidden="true"></i></button>
+            <button class="slider-btn" type="button" data-slider-next aria-controls="c-combo-rail" aria-label="Next combos"><i class="ti ti-chevron-right" aria-hidden="true"></i></button>
+          </div>
+        </div>
+        <div class="rail c-rail" id="c-combo-rail" data-slider tabindex="0" aria-label="Combos"></div>
+        <div class="slider-dots" data-slider-dots="c-combo-rail"></div>
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="c-section c-reviews c-scallop c-scallop--top" id="reviews">
+      <div class="container">
+        <div class="c-head c-head--row">
+          <div>
+            <h2 class="c-title">Real results</h2>
+            <span class="c-tag">from our Beauté Shi babes</span>
+          </div>
+          <div class="slider-nav">
+            <button class="slider-btn" type="button" data-slider-prev aria-controls="c-review-rail" aria-label="Previous reviews"><i class="ti ti-chevron-left" aria-hidden="true"></i></button>
+            <button class="slider-btn" type="button" data-slider-next aria-controls="c-review-rail" aria-label="Next reviews"><i class="ti ti-chevron-right" aria-hidden="true"></i></button>
+          </div>
+        </div>
+        <div class="rail c-rail c-review-rail" id="c-review-rail" data-slider tabindex="0" aria-label="Customer reviews"></div>
+        <div class="slider-dots" data-slider-dots="c-review-rail"></div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="c-cta">
+      <div class="container c-cta__inner">
+        <i class="ti ti-sparkles c-cta__spark" aria-hidden="true"></i>
+        <h2 class="c-title">Start your berry glow routine</h2>
+        <p>Pick a single product or a combo. Free shipping on orders above RM150.</p>
+        <a class="c-btn c-btn--berry" href="#products">Shop now</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Floating WhatsApp -->
+  <a class="c-whatsapp" href="#" aria-label="Chat with Beauté Shi on WhatsApp">
+    <span class="c-whatsapp__label">Need help? <strong>Chat with us</strong></span>
+    <span class="c-whatsapp__btn"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i></span>
+  </a>
+
+  <!-- "Just purchased" pop-up (demo data) -->
+  <aside class="c-proof" id="c-proof" aria-label="Recent purchase" hidden>
+    <img class="c-proof__img" id="c-proof-img" src="" alt="">
+    <div class="c-proof__text">
+      <span id="c-proof-who"></span>
+      <strong id="c-proof-what"></strong>
+      <small id="c-proof-when"></small>
+    </div>
+    <button class="c-proof__close" type="button" id="c-proof-close" aria-label="Hide recent purchases"><i class="ti ti-x" aria-hidden="true"></i></button>
+  </aside>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/concept.js"></script>
+</body>
+</html>
