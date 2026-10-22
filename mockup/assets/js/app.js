@@ -436,7 +436,8 @@ document.addEventListener("click", (e) => {
 });
 
 /* ---------- Slider (horizontal rail with arrows + dots) ---------- */
-function initSlider(rail){
+function initSlider(rail, options = {}){
+  const loop = options?.loop === true;
   const prev = document.querySelector(`[data-slider-prev][aria-controls="${rail.id}"]`);
   const next = document.querySelector(`[data-slider-next][aria-controls="${rail.id}"]`);
   const dots = document.querySelector(`[data-slider-dots="${rail.id}"]`);
@@ -466,8 +467,10 @@ function initSlider(rail){
 
   function update(){
     const page = current();
-    if(prev) prev.disabled = rail.scrollLeft <= 2;
-    if(next) next.disabled = rail.scrollLeft >= maxScroll() - 2;
+    if(!loop){
+      if(prev) prev.disabled = rail.scrollLeft <= 2;
+      if(next) next.disabled = rail.scrollLeft >= maxScroll() - 2;
+    }
     dots.querySelectorAll(".slider-dot").forEach((d, i) => {
       d.classList.toggle("is-active", i === page);
       if(i === page) d.setAttribute("aria-current", "true");
@@ -475,8 +478,9 @@ function initSlider(rail){
     });
   }
 
-  prev?.addEventListener("click", () => goTo(current() - 1));
-  next?.addEventListener("click", () => goTo(current() + 1));
+  const last = () => pageCount() - 1;
+  prev?.addEventListener("click", () => goTo(loop && current() === 0 ? last() : current() - 1));
+  next?.addEventListener("click", () => goTo(loop && current() === last() ? 0 : current() + 1));
   dots.addEventListener("click", (e) => {
     const dot = e.target.closest("[data-page]");
     if(dot) goTo(Number(dot.dataset.page));
@@ -493,3 +497,60 @@ function initSlider(rail){
   rail.querySelectorAll("img").forEach((img) => img.addEventListener("load", buildDots, { once: true }));
   buildDots();
 }
+
+/* ---------- Hero banner slider ---------- */
+// Fills any [data-banner-slider] element with the BANNERS slides, arrows and dots.
+// data-sizes on the element sets the <img sizes> for that page's layout.
+function mountBannerSlider(host){
+  const id = `banner-rail-${Math.random().toString(36).slice(2, 7)}`;
+  const sizes = host.dataset.sizes || "100vw";
+  host.innerHTML = `
+    <div class="banner-slider" aria-roledescription="carousel" aria-label="Featured offers">
+      <div class="banner-track rail" id="${id}" tabindex="0" aria-live="off">
+        ${BANNERS.map((b, i) => `
+          <a class="banner-slide" href="${b.href}" aria-roledescription="slide" aria-label="${i + 1} of ${BANNERS.length}">
+            <img
+              src="assets/img/${b.file}-1774.webp"
+              srcset="assets/img/${b.file}-900.webp 900w, assets/img/${b.file}-1774.webp 1774w"
+              sizes="${sizes}" width="1774" height="887"
+              ${i === 0 ? 'fetchpriority="high"' : 'loading="lazy"'}
+              alt="${b.alt}">
+          </a>`).join("")}
+      </div>
+      <button class="slider-btn banner-arrow banner-arrow--prev" type="button" data-slider-prev aria-controls="${id}" aria-label="Previous banner">${icon("chevron-left")}</button>
+      <button class="slider-btn banner-arrow banner-arrow--next" type="button" data-slider-next aria-controls="${id}" aria-label="Next banner">${icon("chevron-right")}</button>
+      <div class="banner-controls">
+        <div class="slider-dots banner-dots" data-slider-dots="${id}"></div>
+      </div>
+    </div>`;
+
+  const root = host.querySelector(".banner-slider");
+  const rail = host.querySelector(".banner-track");
+  initSlider(rail, { loop: true });
+
+  // Autoplay: loops every 5s, pauses on hover/focus/hidden tab, off for reduced motion.
+  const DELAY = 5000;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const playing = !reduce;
+  let hovered = false;
+  let timer;
+
+  function advance(){
+    const w = rail.clientWidth;
+    const atEnd = rail.scrollLeft >= rail.scrollWidth - w - 2;
+    rail.scrollTo({ left: atEnd ? 0 : rail.scrollLeft + w, behavior: reduce ? "auto" : "smooth" });
+  }
+  function schedule(){
+    clearInterval(timer);
+    if(playing && !hovered && !document.hidden) timer = setInterval(advance, DELAY);
+  }
+  root.addEventListener("mouseenter", () => { hovered = true; schedule(); });
+  root.addEventListener("mouseleave", () => { hovered = false; schedule(); });
+  root.addEventListener("focusin", () => { hovered = true; schedule(); });
+  root.addEventListener("focusout", (e) => { if(!root.contains(e.relatedTarget)){ hovered = false; schedule(); } });
+  root.addEventListener("pointerdown", schedule);
+  document.addEventListener("visibilitychange", schedule);
+  schedule();
+}
+
+document.querySelectorAll("[data-banner-slider]").forEach(mountBannerSlider);

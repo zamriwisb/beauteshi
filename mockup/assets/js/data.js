@@ -13,6 +13,25 @@ const DELIVERY_COPY = [
   "Free shipping on orders above RM150.",
 ];
 
+// Homepage hero slides (images in assets/img, saved at 900px and 1774px wide).
+const BANNERS = [
+  {
+    file: "hero-berry-scrub",
+    href: "product.html?id=berry-scrub",
+    alt: "Beauté Shi Berry Scrub, whitening scrub and mask for face and body. Brightens, moisturises and refreshes skin.",
+  },
+  {
+    file: "banner-combo-fullset",
+    href: "product.html?id=combo-fullset",
+    alt: "Combo Fullset Strawberry: Berry Lotion, Berry Booster, Berry Serum, Berry White Whitening Soap and Berry Scrub.",
+  },
+  {
+    file: "banner-combo-bodycare",
+    href: "product.html?id=combo-bodycare",
+    alt: "Combo Bodycare: Berry Lotion, Berry Scrub and Berry White Whitening Soap. Whiten, nourish, glow.",
+  },
+];
+
 // Mockup coupons (not real promotions).
 const COUPONS = [
   { code: "GLOW10", label: "10% off your order", type: "percent", value: 10, minSpend: 0 },
