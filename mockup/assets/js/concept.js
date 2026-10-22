@@ -71,7 +71,7 @@ function cardHTML(listing, selectedId){
 /* ---------- shop grid ---------- */
 const grid = document.getElementById("c-grid");
 function showProducts(filter){
-  grid.innerHTML = catalog()
+  grid.innerHTML = whiteCatalog()
     .map((l) => ({ l, match: filter === "all" ? l.options[0] : l.options.find((id) => getProduct(id).category === filter) }))
     .filter(({ match }) => match)
     .map(({ l, match }) => cardHTML(l, match))
@@ -90,7 +90,10 @@ document.querySelector(".c-filters").addEventListener("click", (e) => {
 });
 
 /* ---------- combos ---------- */
-document.getElementById("c-combo-rail").innerHTML = PRODUCTS.filter((p) => p.includes).map((p) => {
+// Only combos with a white-background photo are shown; the section hides when there are none.
+const whiteCombos = PRODUCTS.filter((p) => p.includes && p.whiteBg);
+document.getElementById("combos").hidden = whiteCombos.length === 0;
+document.getElementById("c-combo-rail").innerHTML = whiteCombos.map((p) => {
   const href = `product.html?id=${p.id}`;
   return `
     <article class="c-combo">
@@ -118,7 +121,7 @@ document.querySelector("main").addEventListener("click", (e) => {
     const id = swatch.dataset.swatch;
     const card = swatch.closest(".c-card");
     const tmp = document.createElement("div");
-    tmp.innerHTML = cardHTML(getListing(id), id).trim();
+    tmp.innerHTML = cardHTML(whiteListing(id), id).trim();
     card.replaceWith(tmp.firstElementChild);
     grid.querySelector(`[data-swatch="${id}"]`)?.focus();
     return;

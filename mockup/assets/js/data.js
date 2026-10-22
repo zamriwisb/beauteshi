@@ -19,9 +19,11 @@ const COUPONS = [
   { code: "BERRY15", label: "RM15 off orders from RM150", type: "fixed", value: 15, minSpend: 150 },
 ];
 
+// whiteBg: the product photo is a clean shot on a white / plain studio background.
 const PRODUCTS = [
   {
     id: "berry-lotion",
+    whiteBg: true,
     name: "Berry Lotion",
     category: "skincare",
     price: 55,
@@ -38,6 +40,7 @@ const PRODUCTS = [
   },
   {
     id: "berry-booster",
+    whiteBg: true,
     name: "Berry Booster",
     category: "skincare",
     price: 55,
@@ -54,6 +57,7 @@ const PRODUCTS = [
   },
   {
     id: "berry-whitening-set",
+    whiteBg: true,
     name: "Berry Whitening Set",
     category: "set",
     price: 65,
@@ -86,6 +90,7 @@ const PRODUCTS = [
   },
   {
     id: "berry-scrub",
+    whiteBg: true,
     name: "Berry Scrub",
     category: "skincare",
     price: 35,
@@ -102,6 +107,7 @@ const PRODUCTS = [
   },
   {
     id: "berry-white-soap",
+    whiteBg: true,
     name: "Berry White Whitening Soap",
     category: "skincare",
     price: 25,
@@ -118,6 +124,7 @@ const PRODUCTS = [
   },
   {
     id: "elen-renewal-cream",
+    whiteBg: true,
     name: "Elen Renewal Cream",
     category: "skincare",
     price: 38,
@@ -134,6 +141,7 @@ const PRODUCTS = [
   },
   {
     id: "nestglow",
+    whiteBg: true,
     name: "Nestglow",
     category: "supplement",
     price: 45,
@@ -256,6 +264,15 @@ const LISTINGS = [
 
 function getProduct(id){
   return PRODUCTS.find((p) => p.id === id);
+}
+
+// Catalogue limited to products whose photo has a white background (used by the concept pages).
+function whiteListing(productId){
+  const l = getListing(productId);
+  return { ...l, options: l.options.filter((id) => getProduct(id).whiteBg) };
+}
+function whiteCatalog(){
+  return catalog().map((l) => whiteListing(l.options[0])).filter((l) => l.options.length);
 }
 
 function catalog(){

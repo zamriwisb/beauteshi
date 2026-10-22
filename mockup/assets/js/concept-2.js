@@ -65,7 +65,7 @@ function cardHTML(listing, selectedId){
 /* ---------- product grid ---------- */
 const grid = document.getElementById("k-grid");
 function showProducts(filter){
-  grid.innerHTML = catalog()
+  grid.innerHTML = whiteCatalog()
     .map((l) => ({ l, match: matchFor(l, filter) }))
     .filter(({ match }) => match)
     .map(({ l, match }) => cardHTML(l, match))
@@ -91,7 +91,7 @@ grid.addEventListener("click", (e) => {
   if(swatch){
     const id = swatch.dataset.swatch;
     const tmp = document.createElement("div");
-    tmp.innerHTML = cardHTML(getListing(id), id).trim();
+    tmp.innerHTML = cardHTML(whiteListing(id), id).trim();
     swatch.closest(".k-card").replaceWith(tmp.firstElementChild);
     grid.querySelector(`[data-swatch="${id}"]`)?.focus();
     return;

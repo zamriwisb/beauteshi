@@ -205,6 +205,8 @@ body.concept main{ overflow-x: clip; }
 }
 .c-card:nth-child(even) .c-card__frame{ transform: rotate(2deg); }
 .c-card:hover .c-card__frame{ transform: rotate(0); }
+/* product photos: lift the grey studio backdrop towards white, keep reds rich */
+.c-card__frame img, .concept .swatch img{ filter: brightness(1.1) contrast(1.06) saturate(1.06); }
 .c-card__frame img{ position: absolute; top: 8px; left: 8px; right: 8px; bottom: 26px; width: calc(100% - 16px); height: calc(100% - 34px); object-fit: cover; border-radius: 3px; }
 .c-card__frame .ti{ position: absolute; right: 8px; bottom: 5px; font-size: 16px; color: var(--berry); }
 .c-sticker{

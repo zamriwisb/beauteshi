@@ -80,6 +80,8 @@ function renderHeader(active){
           ${link("index.html#about", "About", "about")}
         </nav>
         <div class="header-actions">
+          <a class="icon-btn" href="#" aria-label="Account">${icon("user")}</a>
+          <a class="icon-btn" href="#" aria-label="Wishlist">${icon("heart")}</a>
           <a class="icon-btn" href="cart.html" aria-label="Cart">
             ${ICONS.bag}
             <span class="cart-count" data-cart-count hidden>0</span>

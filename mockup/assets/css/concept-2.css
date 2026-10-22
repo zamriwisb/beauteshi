@@ -92,6 +92,8 @@ body.concept2{
 .k-grid{ display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-8) var(--space-6); }
 .k-card{ display: flex; flex-direction: column; }
 .k-card__photo{ position: relative; display: block; aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; background: var(--k-pink); }
+/* product photos: lift the grey studio backdrop towards white, keep reds rich */
+.k-card__photo img, .concept2 .swatch img{ filter: brightness(1.1) contrast(1.06) saturate(1.06); }
 .k-card__photo img{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
 .k-card:hover .k-card__photo img{ transform: scale(1.04); }
 .k-label{
