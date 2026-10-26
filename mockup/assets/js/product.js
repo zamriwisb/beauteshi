@@ -133,7 +133,8 @@ function render(){
     <h3>Delivery</h3>
     <ul>${DELIVERY_COPY.map((s) => `<li>${s}</li>`).join("")}</ul>`;
 
-  const others = catalog().filter((l) => l.id !== listing.id);
+  // Suggestions use white-background photos only, matching the shop grid.
+  const others = whiteCatalog().filter((l) => l.id !== listing.id);
   const sameCat = (l) => l.options.some((id) => getProduct(id).category === p.category);
   const related = others.filter(sameCat).concat(others.filter((l) => !sameCat(l))).slice(0, 4);
   $("related").innerHTML = related.map((l) => productCard(l)).join("");
@@ -181,7 +182,7 @@ function closeSheet(){
 function commit(mode){
   Cart.add(state.selected.id, state.qty);
   if(mode === "buy"){
-    location.href = "checkout.html";
+    location.href = pageUrl("checkout.html");
     return;
   }
   closeSheet();

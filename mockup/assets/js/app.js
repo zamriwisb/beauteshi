@@ -1,4 +1,10 @@
 const FREE_SHIPPING_MIN = 150;
+
+// Page map: a concept sets window.PAGE_MAP before app.js so links stay within its own pages.
+const PAGES = { home: "index.html", product: "product.html", cart: "cart.html", checkout: "checkout.html", ...(window.PAGE_MAP || {}) };
+function pageUrl(url){
+  return url.replace(/^(index|product|cart|checkout)\.html/, (m, name) => PAGES[name === "index" ? "home" : name]);
+}
 const CART_KEY = "beauteshi_cart";
 
 const Cart = {
@@ -64,6 +70,7 @@ const ICONS = {
 };
 
 function renderHeader(active){
+  if(!document.getElementById("site-header")) return;
   const link = (href, label, key) =>
     `<a href="${href}"${active === key ? ' class="is-active" aria-current="page"' : ""}>${label}</a>`;
   document.getElementById("site-header").outerHTML = `
@@ -104,6 +111,7 @@ function renderHeader(active){
 }
 
 function renderFooter(){
+  if(!document.getElementById("site-footer")) return;
   document.getElementById("site-footer").outerHTML = `
     <footer class="site-footer">
       <div class="container footer-grid">
@@ -162,17 +170,17 @@ function productCard(listing, selectedId){
               aria-pressed="${o.id === p.id}" aria-label="${o.name}" title="${o.name}">
               <img src="${o.images[0]}" alt="" loading="lazy">
             </button>`).join("")}
-          ${extra > 0 ? `<a class="swatch swatch--more" href="product.html?id=${p.id}" aria-label="${extra} more options">+${extra}</a>` : ""}
+          ${extra > 0 ? `<a class="swatch swatch--more" href="${pageUrl("product.html")}?id=${p.id}" aria-label="${extra} more options">+${extra}</a>` : ""}
         </div>` : "";
   return `
     <article class="product-card" data-listing="${listing.id}">
-      <a class="product-card__media" href="product.html?id=${p.id}">
+      <a class="product-card__media" href="${pageUrl("product.html")}?id=${p.id}">
         <img src="${p.images[0]}" alt="${p.name}" loading="lazy">
         ${pct ? `<span class="product-card__badge">-${pct}%</span>` : ""}
       </a>
       <div class="product-card__body">
         <span class="product-card__cat">${CATEGORIES[p.category]}</span>
-        <h3 class="product-card__name"><a href="product.html?id=${p.id}">${p.name}</a></h3>
+        <h3 class="product-card__name"><a href="${pageUrl("product.html")}?id=${p.id}">${p.name}</a></h3>
         <div class="price">
           <span class="price__now">${formatRM(p.price)}</span>
           ${p.compareAt ? `<span class="price__was">${formatRM(p.compareAt)}</span>` : ""}
@@ -508,7 +516,7 @@ function mountBannerSlider(host){
     <div class="banner-slider" aria-roledescription="carousel" aria-label="Featured offers">
       <div class="banner-track rail" id="${id}" tabindex="0" aria-live="off">
         ${BANNERS.map((b, i) => `
-          <a class="banner-slide" href="${b.href}" aria-roledescription="slide" aria-label="${i + 1} of ${BANNERS.length}">
+          <a class="banner-slide" href="${pageUrl(b.href)}" aria-roledescription="slide" aria-label="${i + 1} of ${BANNERS.length}">
             <img
               src="assets/img/${b.file}-1774.webp"
               srcset="assets/img/${b.file}-900.webp 900w, assets/img/${b.file}-1774.webp 1774w"

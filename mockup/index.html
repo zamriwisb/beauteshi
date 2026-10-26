@@ -3,183 +3,84 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Beauté Shi — Secret of Beauté</title>
-  <meta name="description" content="Beauty and wellness essentials for your everyday self-care routine.">
+  <title>Beauté Shi — Strawberry body care &amp; wellness</title>
+  <meta name="description" content="Beauté Shi strawberry body care and wellness essentials.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400..700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;0,900;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.34.0/dist/tabler-icons.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/site.css">
 </head>
-<body>
-  <div id="site-header"></div>
+<body class="concept3">
+  <div id="t-top"></div>
 
   <main>
-    <section class="hero-banner">
-      <div class="container">
-        <h1 class="visually-hidden">Beauté Shi — beauty and wellness essentials</h1>
-        <div class="hero-banner__link" data-banner-slider data-sizes="(min-width: 1180px) 1132px, calc(100vw - 32px)"></div>
+    <!-- Full-width banner -->
+    <section class="t-hero">
+      <h1 class="visually-hidden">Beauté Shi — strawberry body care for brighter, softer skin</h1>
+      <div data-banner-slider data-sizes="100vw"></div>
+    </section>
+
+    <!-- Promo strip -->
+    <div class="t-strip">
+      <p>Free shipping for every purchase above RM150. Use code GLOW10 for 10% off your order.</p>
+    </div>
+
+    <!-- Shop here -->
+    <section class="t-shop" id="products">
+      <div class="t-wrap">
+        <div class="t-shop__head">
+          <h2>Shop here</h2>
+          <span class="t-shop__tag">Our best-loved berry picks</span>
+        </div>
+        <ul class="t-grid" id="t-grid"></ul>
       </div>
     </section>
 
-    <section class="features" aria-label="Why shop with us">
-      <div class="container">
-        <div class="feature">
-          <span class="feature__icon"><i class="ti ti-sparkles" aria-hidden="true"></i></span>
-          <div><strong>Everyday essentials</strong><span>Made for daily self-care</span></div>
+    <!-- Trust row -->
+    <section class="t-trust" aria-label="Why shop with us">
+      <div class="t-wrap t-trust__row">
+        <div class="t-trust__item">
+          <span class="t-trust__icon"><i class="ti ti-truck-delivery" aria-hidden="true"></i></span>
+          <h3>Free shipping</h3>
+          <p>for every purchase above RM150</p>
         </div>
-        <div class="feature">
-          <span class="feature__icon"><i class="ti ti-truck-delivery" aria-hidden="true"></i></span>
-          <div><strong>Free shipping</strong><span>For orders above RM150</span></div>
+        <div class="t-trust__item">
+          <span class="t-trust__icon"><i class="ti ti-shield-lock" aria-hidden="true"></i></span>
+          <h3>Secure payment</h3>
+          <p>FPX, cards and e-wallets</p>
         </div>
-        <div class="feature">
-          <span class="feature__icon"><i class="ti ti-shield-check" aria-hidden="true"></i></span>
-          <div><strong>Secure payment</strong><span>FPX, cards and e-wallets</span></div>
+        <div class="t-trust__item">
+          <span class="t-trust__icon"><i class="ti ti-sparkles" aria-hidden="true"></i></span>
+          <h3>Quality care</h3>
+          <p>gentle strawberry care for face and body</p>
         </div>
-        <div class="feature">
-          <span class="feature__icon"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i></span>
-          <div><strong>Customer care</strong><span>Chat with us on WhatsApp</span></div>
+        <div class="t-trust__item">
+          <span class="t-trust__icon"><i class="ti ti-message-circle-heart" aria-hidden="true"></i></span>
+          <h3>Customer support</h3>
+          <p>friendly help on WhatsApp</p>
         </div>
-      </div>
-    </section>
-
-    <section class="section" id="products">
-      <div class="container">
-        <div class="section-head">
-          <h2>Your skin. Your routine. Your glow.</h2>
-          <p>Body care, skincare and wellness essentials for every skin type.</p>
-        </div>
-        <div class="filters" role="tablist" aria-label="Filter products">
-          <button class="filter-btn is-active" type="button" role="tab" aria-selected="true" data-filter="all">All products</button>
-          <button class="filter-btn" type="button" role="tab" aria-selected="false" data-filter="skincare">Skincare / Bodycare</button>
-          <button class="filter-btn" type="button" role="tab" aria-selected="false" data-filter="supplement">Supplement</button>
-          <button class="filter-btn" type="button" role="tab" aria-selected="false" data-filter="set">Set products</button>
-        </div>
-        <div class="product-grid" id="product-grid"></div>
-      </div>
-    </section>
-
-    <section class="section section--tint" id="about">
-      <div class="container split">
-        <img src="https://platform-bcl.bsb-cdn.com/media/2026/09/01M3KKDQJRR4FNCJ9KQKAYGAVZ.jpeg" alt="Beauté Shi products on a bathroom shelf" loading="lazy">
-        <div>
-          <span class="eyebrow">About Beauté Shi</span>
-          <h2 class="about-title">Beauty begins with your everyday ritual.</h2>
-          <p class="about-copy">Beauté Shi brings together beauty and wellness essentials that fit naturally into your day. From body care to wellness drinks, every step is a small moment for yourself.</p>
-          <div class="reasons">
-            <div class="reason">
-              <h3>Easy routine</h3>
-              <p>Simple steps you can keep up with every day.</p>
-            </div>
-            <div class="reason">
-              <h3>Self-care</h3>
-              <p>A few minutes each day that are just for you.</p>
-            </div>
-            <div class="reason">
-              <h3>Feel confident</h3>
-              <p>Skin that feels comfortable, every day.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="combos">
-      <div class="container">
-        <div class="section-head section-head--slider">
-          <div>
-            <h2>More beauty, better value.</h2>
-            <p>Our product combinations put a full routine together for less than buying each item on its own.</p>
-          </div>
-          <div class="slider-nav">
-            <button class="slider-btn" type="button" data-slider-prev aria-controls="combo-rail" aria-label="Previous combos"><i class="ti ti-chevron-left" aria-hidden="true"></i></button>
-            <button class="slider-btn" type="button" data-slider-next aria-controls="combo-rail" aria-label="Next combos"><i class="ti ti-chevron-right" aria-hidden="true"></i></button>
-          </div>
-        </div>
-        <div class="rail" id="combo-rail" data-slider tabindex="0" aria-label="Combos"></div>
-        <div class="slider-dots" data-slider-dots="combo-rail"></div>
-      </div>
-    </section>
-
-    <section class="section section--tint" id="reviews">
-      <div class="container">
-        <div class="section-head section-head--slider">
-          <div>
-            <h2>Real customers, real results.</h2>
-            <p>Messages and photos shared by Beauté Shi customers.</p>
-          </div>
-          <div class="slider-nav">
-            <button class="slider-btn" type="button" data-slider-prev aria-controls="review-rail" aria-label="Previous reviews"><i class="ti ti-chevron-left" aria-hidden="true"></i></button>
-            <button class="slider-btn" type="button" data-slider-next aria-controls="review-rail" aria-label="Next reviews"><i class="ti ti-chevron-right" aria-hidden="true"></i></button>
-          </div>
-        </div>
-        <div class="rail review-rail" id="review-rail" data-slider tabindex="0" aria-label="Customer reviews">
-          <img src="https://platform-bcl.bsb-cdn.com/media/2026/09/01M3KDBWNSPS9FWZEERW5C9XSD.jpg" alt="Customer review photo 1 of 6" loading="lazy">
-          <img src="https://platform-bcl.bsb-cdn.com/media/2026/09/01M3KDBXEPQ0X3CGXEE3P42FBX.jpg" alt="Customer review photo 2 of 6" loading="lazy">
-          <img src="https://platform-bcl.bsb-cdn.com/media/2026/09/01M3KDBXYYZNA8PHKKMM6H5QK0.jpg" alt="Customer review photo 3 of 6" loading="lazy">
-          <img src="https://platform-bcl.bsb-cdn.com/media/2026/09/01M3KDBYFNVWNEV5KEAXV6JPY5.jpg" alt="Customer review photo 4 of 6" loading="lazy">
-          <img src="https://platform-bcl.bsb-cdn.com/media/2026/09/01M3KDBZMH09B2ZHA454TW0XG0.jpg" alt="Customer review photo 5 of 6" loading="lazy">
-          <img src="https://platform-bcl.bsb-cdn.com/media/2026/09/01M3KDBZ0W32KKS1ZAD3XVY8EX.jpg" alt="Customer review photo 6 of 6" loading="lazy">
-        </div>
-        <div class="slider-dots" data-slider-dots="review-rail"></div>
-      </div>
-    </section>
-
-    <section class="band">
-      <div class="container">
-        <h2>Your beauty routine starts here.</h2>
-        <p>Pick a single product or a combo and check out in a few minutes.</p>
-        <a class="btn btn-outline btn-lg" href="#products">Shop now</a>
       </div>
     </section>
   </main>
 
-  <div id="site-footer"></div>
+  <div id="t-bottom"></div>
+
+  <!-- "Just purchased" pop-up (demo data) -->
+  <aside class="t-proof" id="t-proof" aria-label="Recent purchase" hidden>
+    <img class="t-proof__img" id="t-proof-img" src="" alt="">
+    <div class="t-proof__text">
+      <span id="t-proof-who"></span>
+      <a id="t-proof-what" href="#"></a>
+      <small id="t-proof-when"></small>
+    </div>
+    <button class="t-proof__close" type="button" id="t-proof-close" aria-label="Hide recent purchases"><i class="ti ti-x" aria-hidden="true"></i></button>
+  </aside>
 
   <script src="assets/js/data.js"></script>
   <script src="assets/js/app.js"></script>
-  <script>
-    renderHeader("home");
-    renderFooter();
-
-    const grid = document.getElementById("product-grid");
-    function showProducts(filter){
-      grid.innerHTML = catalog()
-        .map((l) => ({ l, match: filter === "all" ? l.options[0] : l.options.find((id) => getProduct(id).category === filter) }))
-        .filter(({ match }) => match)
-        .map(({ l, match }) => productCard(l, match))
-        .join("");
-    }
-    showProducts("all");
-
-    document.querySelector(".filters").addEventListener("click", (e) => {
-      const btn = e.target.closest("[data-filter]");
-      if(!btn) return;
-      document.querySelectorAll(".filter-btn").forEach((b) => {
-        b.classList.toggle("is-active", b === btn);
-        b.setAttribute("aria-selected", String(b === btn));
-      });
-      showProducts(btn.dataset.filter);
-    });
-
-    document.getElementById("combo-rail").innerHTML = PRODUCTS.filter((p) => p.includes)
-      .map((p) => `
-        <article class="combo-card">
-          <a class="combo-card__media" href="product.html?id=${p.id}"><img src="${p.images[0]}" alt="${p.name}" loading="lazy"></a>
-          <div class="combo-card__body">
-            <h3 class="combo-card__name"><a href="product.html?id=${p.id}">${p.name}</a></h3>
-            <p class="combo-card__items">${p.includes}</p>
-            <div class="price">
-              <span class="price__now">${formatRM(p.price)}</span>
-              ${p.compareAt ? `<span class="price__was">${formatRM(p.compareAt)}</span>` : ""}
-            </div>
-            <button class="btn btn-primary btn-block" type="button" data-add="${p.id}">Add to cart</button>
-          </div>
-        </article>`)
-      .join("");
-
-    bindProductCards();
-    document.querySelectorAll("[data-slider]").forEach(initSlider);
-  </script>
+  <script src="assets/js/shell.js"></script>
+  <script src="assets/js/home.js"></script>
 </body>
 </html>
