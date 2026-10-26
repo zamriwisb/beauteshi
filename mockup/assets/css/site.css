@@ -71,26 +71,27 @@ body.concept3{
 .t-shop{ background: var(--t-pink); padding-block: 60px 60px; }
 .t-shop__head{ display: flex; flex-direction: column; align-items: center; margin-bottom: 26px; }
 .concept3 .t-shop__head h2{
-  font-family: var(--font-display);
-  font-size: 56px;
-  font-weight: 900;
+  font-family: "Fredoka", var(--font-body);
+  font-size: 58px;
+  font-weight: 700;
   line-height: 1;
   color: var(--t-hot);
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 .t-shop__tag{
-  margin-top: -2px;
-  padding: 6px 12px;
-  background: var(--t-cream);
-  border-radius: 3px;
-  box-shadow: 0 2px 0 rgba(194, 24, 91, 0.18);
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--t-ink);
-  transform: rotate(-4deg);
+  position: relative;
+  z-index: 1;
+  margin-top: 6px;
+  padding: 8px 30px 10px;
+  background: var(--t-hot);
+  /* rough brush-stroke edges */
+  clip-path: polygon(3% 14%, 28% 4%, 55% 9%, 82% 2%, 98% 6%, 100% 34%, 97% 58%, 100% 86%, 74% 94%, 46% 99%, 18% 93%, 2% 98%, 0% 72%, 3% 46%, 0% 26%);
+  font-family: "Fredoka", var(--font-body);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--white);
+  transform: rotate(-3deg);
 }
 
 .t-grid{ list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 20px; }
@@ -199,7 +200,7 @@ body.concept3{
   .t-strip p{ font-size: 11px; padding-block: 8px; }
   .t-shop{ padding-block: 50px 50px; }
   .concept3 .t-shop__head h2{ font-size: 46px; }
-  .t-shop__tag{ font-size: 15px; }
+  .t-shop__tag{ padding: 6px 22px 8px; font-size: 17px; }
   .t-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 16px; }
   .t-card > a{ padding: 12px 12px 26px; }
   .t-badge{ font-size: 11px; padding: 4px 14px 4px 7px; line-height: 12px; }
@@ -215,6 +216,9 @@ body.concept3{
   .t-footer{ padding-block: 50px 40px; }
   .t-footer__grid{ grid-template-columns: 1fr; gap: 36px; }
   .t-footer__brand{ order: 4; display: flex; flex-direction: column; align-items: center; }
+  .t-footer__col{ display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .t-footer__col p{ margin-inline: auto; }
+  .t-footer__contact{ gap: 10px; }
   .t-footer__copy{ margin-top: 36px; text-align: center; }
   .t-whatsapp__label{ display: none; }
   .t-whatsapp__btn{ width: 52px; height: 52px; }
